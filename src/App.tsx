@@ -2,7 +2,7 @@ import Main from "./Layout/Main";
 
 const App = () => {
   return (
-    <div className="min-h-screen w-full">
+    <div className="">
       <Main></Main>
     </div>
   );
