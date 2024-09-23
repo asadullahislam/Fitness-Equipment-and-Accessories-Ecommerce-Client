@@ -9,13 +9,30 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
+    // addToCart: (state, action) => {
+    //   const isExist = state.products.find(
+    //     (product) => product._id === action.payload._id
+    //   );
+    //   if (!isExist) {
+    //     state.products.push({ ...action.payload, quantity: 1 });
+    //   }
+    //   state.selectedItems = selectSelectedItems(state);
+    //   state.totalPrice = selectTotalPrice(state);
+    // },
     addToCart: (state, action) => {
-      const isExist = state.products.find(
+      const existingProduct = state.products.find(
         (product) => product._id === action.payload._id
       );
-      if (!isExist) {
+
+      if (existingProduct) {
+        // If the product is already in the cart, increment its quantity
+        existingProduct.quantity += 1;
+      } else {
+        // If the product is not in the cart, add it with a quantity of 1
         state.products.push({ ...action.payload, quantity: 1 });
       }
+
+      // Update the selectedItems and totalPrice after adding to cart
       state.selectedItems = selectSelectedItems(state);
       state.totalPrice = selectTotalPrice(state);
     },

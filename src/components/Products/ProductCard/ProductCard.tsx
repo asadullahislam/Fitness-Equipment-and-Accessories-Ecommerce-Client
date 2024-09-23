@@ -17,7 +17,8 @@ const ProductCart = ({ product }: { product: any }) => {
     setSelectedProduct(null);
     setShowModal(false);
   };
-  const handleAddToCart = (product) => {
+  const handleAddToCart = (e: any, product: any) => {
+    e.stopPropagation();
     dispatch(addToCart(product));
   };
   console.log(product.quantity);
@@ -44,15 +45,14 @@ const ProductCart = ({ product }: { product: any }) => {
           <div className="card-actions">
             <button
               onClick={(e) => {
-                e.stopPropagation();
-                handleAddToCart(product);
+                handleAddToCart(e, product);
               }}
               className={`w-full py-2 px-4 rounded-lg ${
                 product.quantity === 0
                   ? "bg-gray-400 text-gray-200 cursor-not-allowed"
                   : "btn btn-primary"
               }`}
-              disabled={product.quality === 0}
+              disabled={product.quantity === 0}
             >
               Add to Cart
             </button>

@@ -6,6 +6,7 @@ import {
   deleteFormCart,
 } from "../../../redux/features/cartSlice";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const Cart = () => {
   const dispatch = useAppDispatch();
@@ -13,6 +14,25 @@ const Cart = () => {
 
   // Get products from the cart slice in the Redux store
   const products = useAppSelector((store) => store.cart.products);
+
+  useEffect(() => {
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      if (products.length > 0) {
+        // Check if the cart has products before showing the message
+        e.preventDefault();
+        e.returnValue = "";
+        return "Are you sure you want to reload? Your cart data will be lost.";
+      }
+    };
+
+    // Add the beforeunload event listener only if there are products in the cart
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    // Cleanup event listener when the component unmounts
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, [products]);
 
   const handleQuantity = (type: string, _id: string, quantity: number) => {
     if (type === "decrement" && quantity === 1) return; // Prevent quantity from going below 1
