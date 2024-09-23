@@ -4,6 +4,7 @@ import second from "../../../assets/2.avif";
 import third from "../../../assets/3.avif";
 import fourth from "../../../assets/4.avif";
 import fifth from "../../../assets/5.avif";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -79,9 +80,12 @@ const Banner = () => {
             <p className="mt-4 text-base md:text-lg lg:text-xl animate-fadeIn">
               {slide.description}
             </p>
-            <button className="mt-4 bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700 transition duration-300 animate-fadeIn">
+            <Link
+              to="/products"
+              className="mt-4 bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700 transition duration-300 animate-fadeIn"
+            >
               {slide.buttonText}
-            </button>
+            </Link>
           </div>
         </div>
       ))}
