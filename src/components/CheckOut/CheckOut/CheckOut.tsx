@@ -6,8 +6,11 @@ import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { useCreateOrderMutation } from "../../../redux/api/checkoutApi";
 import { clearCart } from "../../../redux/features/cartSlice";
 import "react-toastify/dist/ReactToastify.css";
+import { useGetProductsQuery } from "../../../redux/api/api";
 
 const CheckOut = () => {
+  const { refetch: refetchProducts } = useGetProductsQuery();
+
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -59,6 +62,7 @@ const CheckOut = () => {
       await createOrder(orderData).unwrap();
       toast.success("Order created  successfully!");
       dispatch(clearCart());
+      refetchProducts();
       // navigate("/"); // Navigate to home or order summary page
     } catch (error) {
       toast.error("Failed to place the order. Please try again.");
