@@ -20,6 +20,7 @@ const ProductCart = ({ product }: { product: any }) => {
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
   };
+  console.log(product.quantity);
 
   return (
     <div className="relative">
@@ -35,15 +36,23 @@ const ProductCart = ({ product }: { product: any }) => {
         </figure>
         <div className="card-body items-center text-center">
           <h2 className="card-title">{product.name}</h2>
-          <p className="font-semibold">{product.description}</p>
-          <p className="text-lg font-bold text-red-600 mb-4">{product.price}</p>
+          <p className="">{product.description}</p>
+          <p className="text-lg font-bold text-red-600 mb-4">
+            Price: {product.price}
+          </p>
+          <p className="font-semibold">Avialabe quantity: {product.quantity}</p>
           <div className="card-actions">
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 handleAddToCart(product);
               }}
-              className="btn btn-primary"
+              className={`w-full py-2 px-4 rounded-lg ${
+                product.quantity === 0
+                  ? "bg-gray-400 text-gray-200 cursor-not-allowed"
+                  : "btn btn-primary"
+              }`}
+              disabled={product.quality === 0}
             >
               Add to Cart
             </button>

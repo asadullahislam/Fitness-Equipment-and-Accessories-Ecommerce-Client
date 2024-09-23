@@ -1,18 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-// export type TProduct = {
-//   _id?: string;
-//   name: string;
-//   price: number;
-//   category: string[];
-//   description: string;
-//   quantity: number;
-//   image: string;
-//   isDeleted?: boolean;
-//   createdAt?: string;
-//   updatedAt?: string;
-// };
-
 export const productApi = createApi({
   reducerPath: "productApi",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api" }),
@@ -24,15 +11,51 @@ export const productApi = createApi({
         url: "/products",
         method: "GET",
       }),
+      providesTags: ["Product"],
     }),
+    //get single product by id
+    getProductById: builder.query({
+      query: (_id) => ({
+        url: `/products/${_id}`,
+        method: "GET",
+      }),
+      providesTags: (result, error, _id) => [{ type: "Product", _id }],
+    }),
+    // add new product
     addProduct: builder.mutation({
       query: (data) => ({
         url: "/products",
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ["Product"],
+    }),
+
+    // delete product by id
+    deleteProduct: builder.mutation({
+      query: (_id) => ({
+        url: `/products/${_id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Product"],
+    }),
+
+    // update product by id
+    updateProduct: builder.mutation({
+      query: ({ _id, data }) => ({
+        url: `/products/${_id}`,
+        method: "PATCH",
+        body: data,
+      }),
+      invalidatesTags: ["Product"],
     }),
   }),
 });
 
-export const { useGetProductsQuery, useAddProductMutation } = productApi;
+export const {
+  useGetProductsQuery,
+  useAddProductMutation,
+  useDeleteProductMutation,
+  useUpdateProductMutation,
+  useGetProductByIdQuery,
+} = productApi;
