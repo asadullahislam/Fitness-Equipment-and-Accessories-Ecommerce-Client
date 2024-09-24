@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../../../redux/hooks";
+import logo from "../../../assets/logo/FitGear Hub.png";
 
 const Navbar = () => {
   const products = useAppSelector((state) => state.cart.products);
@@ -42,7 +43,14 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">GYM</a>
+          {/* Logo */}
+          <Link to="/" className="flex items-center">
+            <img
+              src={logo}
+              alt="FitGear Hub Logo"
+              className="w-24 h-auto lg:w-32 lg:h-auto object-contain"
+            />
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">

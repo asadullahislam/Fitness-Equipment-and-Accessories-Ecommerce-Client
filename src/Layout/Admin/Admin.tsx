@@ -9,7 +9,8 @@ import { Link } from "react-router-dom";
 const Admin = () => {
   const { data: product = [], isLoading, error } = useGetProductsQuery();
   const [deleteProduct, { isLoading: isDeleting }] = useDeleteProductMutation();
-  const products = product.data;
+  // const products = product.data;
+  const products = Array.isArray(product) ? product : product.data;
 
   const handleDelete = async (_id) => {
     const confirmed = window.confirm(
