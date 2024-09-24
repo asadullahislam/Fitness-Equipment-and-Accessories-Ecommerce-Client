@@ -1,6 +1,6 @@
 // Products.tsx
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import ProductCart from "../ProductCard/ProductCard";
 import { useGetProductsQuery } from "../../../redux/api/api";
 
@@ -11,7 +11,7 @@ const Products = () => {
 
   const { data: product, error, isLoading } = useGetProductsQuery();
   const location = useLocation();
-
+  const navigate = useNavigate();
   // Read the query parameter from the URL
   const queryParams = new URLSearchParams(location.search);
   const categoryFromUrl = queryParams.get("category");
@@ -68,6 +68,19 @@ const Products = () => {
 
   const categories = ["Cardio", "Strength", "Yoga", "Accessories", "Recovery"];
 
+  const handleClearFilter = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault(); // Fix the typo here
+    const confirmed = window.confirm(
+      "Are you sure you want to clear all filters?"
+    );
+    if (confirmed) {
+      setSelectedCategories([]);
+      setSortOrder("");
+      setSearchTerm("");
+      navigate("/products");
+    }
+  };
+
   return (
     <div>
       <div className="text-center">
@@ -92,7 +105,16 @@ const Products = () => {
         />
         <button className="btn btn-primary">Search</button>
       </div>
-      <h1 className="text-center text-4xl font-bold my-6">Category</h1>
+      <div className="flex justify-between">
+        <h1 className="text-center text-4xl font-bold my-6 ">Category</h1>
+        <Link
+          onClick={handleClearFilter}
+          to="/products"
+          className="btn bg-red-600 text-white font-bold"
+        >
+          Clear Filter
+        </Link>
+      </div>
       <div className="flex flex-wrap gap-4 justify-center mb-6">
         {categories.map((category) => (
           <label key={category} className="flex items-center">

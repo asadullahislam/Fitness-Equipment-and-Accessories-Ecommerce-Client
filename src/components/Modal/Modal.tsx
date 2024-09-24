@@ -39,20 +39,22 @@ const Modal = ({ product, onClose }: any) => {
               </h2>
 
               {/* Product Description */}
-              <p className="text-sm lg:text-base text-gray-800 mb-4">
+              <p className="text-sm lg:text-base my-3 text-gray-800 mb-4">
                 {product?.description}
               </p>
 
-              {/* Seller Information */}
-              <p className="text-sm lg:text-base font-semibold text-gray-600">
-                Sold by: {product?.seller}
+              <p className=" my-3 text-gray-600">
+                Category: {product?.category}
+              </p>
+              <p className="  font-semibold text-gray-600">
+                Stock quantity: ${product?.quantity}
               </p>
             </div>
 
             {/* Add to Cart and Cancel Buttons */}
             <div className="mt-6">
               <p className="text-2xl lg:text-3xl font-bold text-gray-900 mb-6">
-                ${product?.price}
+                Price: ${product?.price}
               </p>
               <div className="grid gap-4">
                 {/* Add to Cart Button */}

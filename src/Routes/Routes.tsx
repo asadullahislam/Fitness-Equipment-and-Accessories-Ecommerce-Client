@@ -9,7 +9,9 @@ import Main from "../Layout/Main";
 import Admin from "../Layout/Admin/Admin";
 import AddProduct from "../Layout/ProductOperation/AddProdcut/AddProduct";
 import UpdateProduct from "../Layout/ProductOperation/UpdateProduct/UpdateProduct";
-import CheckoutSummary from "../components/CheckOut/CheckOut/CheckoutSummary";
+
+import FeatureCardDetails from "../Page/Home/FeatureCard/FeatureCardDetails";
+import CheckOutSuccess from "../components/CheckOut/CheckOut/CheckOutSuccess";
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +22,11 @@ export const router = createBrowserRouter([
         path: "/",
         element: <Home></Home>,
       },
+      {
+        path: "/product/:_id",
+        element: <FeatureCardDetails></FeatureCardDetails>,
+      },
+
       {
         path: "products",
         element: <Products></Products>,
@@ -45,9 +52,10 @@ export const router = createBrowserRouter([
         path: "checkout",
         element: <CheckOut></CheckOut>,
       },
+
       {
-        path: "checkout-summary",
-        element: <CheckoutSummary></CheckoutSummary>,
+        path: "checkout-success",
+        element: <CheckOutSuccess></CheckOutSuccess>,
       },
 
       {

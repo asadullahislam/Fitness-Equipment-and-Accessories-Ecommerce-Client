@@ -13,14 +13,15 @@ export const productApi = createApi({
       }),
       providesTags: ["Product"],
     }),
-    //get single product by id
+    // get single product by id
     getProductById: builder.query({
-      query: (_id) => ({
-        url: `/products/${_id}`,
+      query: (id) => ({
+        url: `/products/${id}`,
         method: "GET",
       }),
-      providesTags: (result, error, _id) => [{ type: "Product", _id }],
+      providesTags: (result, error, id) => [{ type: "Product", id }],
     }),
+
     // add new product
     addProduct: builder.mutation({
       query: (data) => ({

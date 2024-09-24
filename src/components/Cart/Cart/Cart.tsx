@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import {
   updateQuantity,
   clearCart,
-  deleteFormCart,
+  deleteFromCart,
 } from "../../../redux/features/cartSlice";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
@@ -35,14 +35,19 @@ const Cart = () => {
   }, [products]);
 
   const handleQuantity = (type: string, _id: string, quantity: number) => {
-    if (type === "decrement" && quantity === 1) return; // Prevent quantity from going below 1
+    if (type === "decrement" && quantity === 1) return;
 
     const payload = { type, _id };
     dispatch(updateQuantity(payload));
   };
 
   const handleDelete = (_id: string) => {
-    dispatch(deleteFormCart(_id));
+    const confirmed = window.confirm(
+      "Are you sure you want to delete form cart"
+    );
+    if (confirmed) {
+      dispatch(deleteFromCart(_id));
+    }
   };
 
   const handleClearCart = () => {
@@ -130,7 +135,9 @@ const Cart = () => {
 
           {/* Dynamically showing selected items */}
           <div className="space-y-2 mb-4">
-            <h1 className="text-purple-600 font-semibold">Selected Items</h1>
+            <h1 className="text-purple-600 font-semibold ">
+              Selected Items:{products.length}
+            </h1>
             {products.length > 0 ? (
               products.map((product: any) => (
                 <div key={product._id} className="flex justify-between">

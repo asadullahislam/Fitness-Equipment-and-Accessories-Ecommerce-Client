@@ -17,6 +17,7 @@ const CheckOut = () => {
   const products = useAppSelector((state) => state.cart.products);
   const [user, setUser] = useState({
     name: "",
+    email: "",
     address: "",
     phone: "",
   });
@@ -52,6 +53,7 @@ const CheckOut = () => {
       })),
       user: {
         name: user.name,
+        email: user.email,
         address: user.address,
         phone: user.phone,
       },
@@ -61,9 +63,11 @@ const CheckOut = () => {
     try {
       await createOrder(orderData).unwrap();
       toast.success("Order created  successfully!");
-      dispatch(clearCart());
-      refetchProducts();
-      // navigate("/"); // Navigate to home or order summary page
+      setTimeout(() => {
+        dispatch(clearCart());
+        refetchProducts();
+        navigate("/checkout-success");
+      }, 2000);
     } catch (error) {
       toast.error("Failed to place the order. Please try again.");
     }
@@ -82,6 +86,18 @@ const CheckOut = () => {
             type="text"
             name="name"
             value={user.name}
+            onChange={handleInputChange}
+            placeholder="Enter your name"
+            className="block w-full border border-gray-300 p-2 rounded-lg"
+            required
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700 font-bold mb-2">Name</label>
+          <input
+            type="text"
+            name="email"
+            value={user.email}
             onChange={handleInputChange}
             placeholder="Enter your name"
             className="block w-full border border-gray-300 p-2 rounded-lg"

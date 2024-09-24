@@ -1,15 +1,17 @@
 import Banner from "../Banner/Banner";
 import BenefitsSection from "../BenifitsProduct/BenifitsProduct";
 import CategoryCard from "../Category/Category";
-import FeatureCard from "../FeatureCard/FeatureCards";
+import FeatureCards from "../FeatureCard/FeatureCards";
+import ImageGallery from "../ImageGallery/ImageGallery";
 
 const Home = () => {
   return (
     <div>
       <Banner></Banner>
       <CategoryCard></CategoryCard>
-      <FeatureCard></FeatureCard>
+      <FeatureCards></FeatureCards>
       <BenefitsSection></BenefitsSection>
+      <ImageGallery></ImageGallery>
     </div>
   );
 };
