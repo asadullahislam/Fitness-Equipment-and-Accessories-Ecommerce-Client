@@ -50,19 +50,19 @@ const AddProduct = () => {
                 type="text"
                 placeholder="Product name"
                 name="name"
-                className="input input-bordered input-accent w-full"
+                className="input input-bordered input-accent w-full my-1"
                 required
               />
               <input
                 type="text"
                 name="price"
                 placeholder="Product Price"
-                className="input input-bordered input-accent w-full"
+                className="input input-bordered input-accent w-full my-1"
                 required
               />
               <select
                 name="category"
-                className="input input-bordered input-accent w-full"
+                className="input input-bordered input-accent w-full my-1"
                 required
               >
                 <option value="">Select a category</option>
@@ -77,7 +77,7 @@ const AddProduct = () => {
                 type="text"
                 name="description"
                 placeholder="Product description"
-                className="input input-bordered input-accent w-full"
+                className="input input-bordered input-accent w-full my-1"
                 required
               />
 
@@ -85,28 +85,34 @@ const AddProduct = () => {
                 type="number"
                 name="quantity"
                 placeholder="Product quantity"
-                className="input input-bordered input-accent w-full"
+                className="input input-bordered input-accent w-full my-1"
                 required
               />
               <input
                 type="text"
                 name="image"
                 placeholder="Product Image URL"
-                className="input input-bordered input-accent w-full"
+                className="input input-bordered input-accent w-full my-1"
                 required
               />
-              <input
-                type="submit"
-                className="btn btn-primary"
-                value="Add Product"
-                disabled={isLoading}
-              />
+              <div className="text-center my-3 my-1">
+                <input
+                  type="submit"
+                  className="btn btn-primary px-8"
+                  value="Add Product"
+                  disabled={isLoading}
+                />
+              </div>
             </div>
           </form>
 
           {/* Show loading, success, or error messages */}
           {isLoading && <p>Loading...</p>}
-          {isSuccess && <p>Product added successfully!</p>}
+          {isSuccess && (
+            <p className="text-center text-4xl font-bold mx-auto text-green-600">
+              Product added successfully!
+            </p>
+          )}
           {isError && (
             <p>Error: {error?.data?.message || "Failed to add product"}</p>
           )}

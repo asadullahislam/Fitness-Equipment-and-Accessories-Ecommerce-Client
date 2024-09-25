@@ -93,7 +93,7 @@ const CheckOut = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 font-bold mb-2">Name</label>
+          <label className="block text-gray-700 font-bold mb-2">Email</label>
           <input
             type="text"
             name="email"

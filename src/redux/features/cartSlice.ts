@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = {
+const initialState: CartState = {
   products: [],
   selectedItems: 0,
   totalPrice: 0,
@@ -41,6 +41,7 @@ export const cartSlice = createSlice({
       state.selectedItems = selectSelectedItems(state);
       state.totalPrice = selectTotalPrice(state);
     },
+
     deleteFromCart: (state, action) => {
       state.products = state.products.filter(
         (product) => product._id !== action.payload

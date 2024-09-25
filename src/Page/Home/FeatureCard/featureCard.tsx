@@ -22,7 +22,7 @@ const FeatureCard = ({ product }) => {
 
           {/* Product Description */}
           <p className="text-gray-600 text-sm sm:text-base mb-4 transition-opacity duration-300 group-hover:opacity-75 line-clamp-3 px-2">
-            {product.description}
+            {product.description.slice(0, 80)}
           </p>
           <p className="font-semibold  my-2 px-2">Price: $ {product.price}</p>
 

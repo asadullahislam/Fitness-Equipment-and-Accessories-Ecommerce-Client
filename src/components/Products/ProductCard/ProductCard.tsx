@@ -128,7 +128,7 @@ const ProductCart = ({ product }: { product: any }) => {
         </figure>
         <div className="card-body items-center text-center">
           <h2 className="card-title">{product.name}</h2>
-          <p className="">{product.description}</p>
+          {/* <p className="">{product.description.slice(0,40)}</p> */}
           <p className="text-lg font-bold text-red-600 mb-4">
             Price: {product.price}
           </p>

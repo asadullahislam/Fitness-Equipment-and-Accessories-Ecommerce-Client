@@ -115,7 +115,7 @@ const AboutUs = () => {
             href="mailto:support@fitnessequipment.com"
             className="text-blue-500 hover:underline"
           >
-            support@fitnessequipment.com
+            support@fitgearhub.com
           </a>
         </p>
         <p className="text-lg font-semibold text-gray-800">

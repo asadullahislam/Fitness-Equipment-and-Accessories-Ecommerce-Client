@@ -40,7 +40,7 @@ const Modal = ({ product, onClose }: any) => {
 
               {/* Product Description */}
               <p className="text-sm lg:text-base my-3 text-gray-800 mb-4">
-                {product?.description}
+                description: {product?.description.slice(0, 60)}
               </p>
 
               <p className=" my-3 text-gray-600">

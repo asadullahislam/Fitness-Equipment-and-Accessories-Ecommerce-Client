@@ -14,6 +14,7 @@ const Cart = () => {
 
   // Get products from the cart slice in the Redux store
   const products = useAppSelector((store) => store.cart.products);
+  console.log(products.length);
 
   useEffect(() => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
@@ -25,7 +26,6 @@ const Cart = () => {
       }
     };
 
-    // Add the beforeunload event listener only if there are products in the cart
     window.addEventListener("beforeunload", handleBeforeUnload);
 
     // Cleanup event listener when the component unmounts
