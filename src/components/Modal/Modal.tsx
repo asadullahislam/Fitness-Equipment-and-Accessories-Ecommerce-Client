@@ -5,7 +5,7 @@ import { addToCart } from "../../redux/features/cartSlice";
 const Modal = ({ product, onClose }: any) => {
   const dispatch = useAppDispatch();
 
-  const handleAddToCart = (e) => {
+  const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     dispatch(
       addToCart({
@@ -59,7 +59,7 @@ const Modal = ({ product, onClose }: any) => {
               <div className="grid gap-4">
                 {/* Add to Cart Button */}
                 <button
-                  onClick={(e) => handleAddToCart(e, product)}
+                  onClick={(e) => handleAddToCart(e)}
                   className="bg-green-700 rounded-lg py-2 px-5 flex items-center justify-center gap-2 text-white font-semibold text-sm hover:bg-green-800 hover:shadow-lg transition-all duration-300 ease-in-out"
                 >
                   <ShoppingCart size={20} />

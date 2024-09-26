@@ -1,6 +1,19 @@
 import { Link } from "react-router-dom";
 
-const FeatureCard = ({ product }) => {
+interface Product {
+  _id: string;
+  name: string;
+  price: number;
+  category: string[];
+  quantity: number;
+  description: string;
+  image: string;
+}
+
+interface FeatureCardProps {
+  product: Product;
+}
+const FeatureCard: React.FC<FeatureCardProps> = ({ product }) => {
   return (
     <div className="flex justify-center items-center w-full">
       <div className="card bg-white w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-sm xl:max-w-md shadow-lg rounded-lg overflow-hidden transition-transform duration-300 hover:shadow-2xl">

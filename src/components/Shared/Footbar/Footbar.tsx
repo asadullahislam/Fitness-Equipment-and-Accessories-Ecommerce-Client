@@ -3,7 +3,7 @@ import logo from "../../../assets/logo/FitGear Hub.png";
 
 const Footbar = () => {
   return (
-    <div>
+    <div className="my-7">
       {/* Main Footer with Links */}
       <footer className="bg-gray-800 text-white p-10">
         <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">

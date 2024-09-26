@@ -34,7 +34,11 @@ const Cart = () => {
     };
   }, [products]);
 
-  const handleQuantity = (type: string, _id: string, quantity: number) => {
+  const handleQuantity = (
+    type: "increment" | "decrement",
+    _id: string,
+    quantity: number
+  ) => {
     if (type === "decrement" && quantity === 1) return;
 
     const payload = { type, _id };

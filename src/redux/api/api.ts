@@ -2,7 +2,9 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const productApi = createApi({
   reducerPath: "productApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api" }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: "https://fit-gear-hub-server-flame.vercel.app/api",
+  }),
   tagTypes: ["Product"],
   endpoints: (builder) => ({
     //GET all products
@@ -19,7 +21,7 @@ export const productApi = createApi({
         url: `/products/${id}`,
         method: "GET",
       }),
-      providesTags: (result, error, id) => [{ type: "Product", id }],
+      providesTags: (_result, _error, id) => [{ type: "Product", id }],
     }),
 
     // add new product

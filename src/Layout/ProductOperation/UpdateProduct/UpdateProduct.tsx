@@ -14,7 +14,7 @@ const UpdateProduct = () => {
     error: fetchError,
   } = useGetProductByIdQuery(id); // Fetch product by ID
 
-  const [updateProduct, { isLoading: isUpdating, isSuccess, isError, error }] =
+  const [updateProduct, { isLoading: isUpdating, isSuccess, isError }] =
     useUpdateProductMutation();
 
   const [formData, setFormData] = useState({
@@ -45,7 +45,9 @@ const UpdateProduct = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleUpdateProduct = async (event) => {
+  const handleUpdateProduct = async (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
     event.preventDefault();
 
     try {
@@ -155,9 +157,7 @@ const UpdateProduct = () => {
               Product updated successfully!
             </p>
           )}
-          {isError && (
-            <p>Error: {error?.data?.message || "Failed to update product"}</p>
-          )}
+          {isError && <p>Failed to update product</p>}
         </div>
       </div>
     </div>

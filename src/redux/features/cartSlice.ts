@@ -1,5 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+type Product = {
+  _id: string;
+  name: string;
+  price: number;
+  quantity: number;
+};
+
+type CartState = {
+  products: Product[];
+  selectedItems: number;
+  totalPrice: number;
+};
 const initialState: CartState = {
   products: [],
   selectedItems: 0,
@@ -26,18 +38,25 @@ export const cartSlice = createSlice({
       state.selectedItems = selectSelectedItems(state);
       state.totalPrice = selectTotalPrice(state);
     },
-    updateQuantity: (state: any, action) => {
-      const products = state.products.map((product: any) => {
+    updateQuantity: (
+      state,
+      action: PayloadAction<{ _id: string; type: "increment" | "decrement" }>
+    ) => {
+      state.products = state.products.map((product) => {
         if (product._id === action.payload._id) {
           if (action.payload.type === "increment") {
             product.quantity += 1;
-          } else if (action.payload.type === "decrement") {
+          } else if (
+            action.payload.type === "decrement" &&
+            product.quantity > 0
+          ) {
             product.quantity -= 1;
           }
         }
         return product;
       });
 
+      // Update selectedItems and totalPrice after modifying the product quantity
       state.selectedItems = selectSelectedItems(state);
       state.totalPrice = selectTotalPrice(state);
     },

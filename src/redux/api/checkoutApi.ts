@@ -3,7 +3,9 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 // Define an RTK Query API for checkout
 export const checkoutApi = createApi({
   reducerPath: "checkoutApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api" }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: "https://fit-gear-hub-server-flame.vercel.app/api",
+  }),
   endpoints: (builder) => ({
     createOrder: builder.mutation({
       query: (orderData) => ({

@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useGetProductsQuery } from "../../../redux/api/api";
 
 const CheckOut = () => {
-  const { refetch: refetchProducts } = useGetProductsQuery();
+  const { refetch: refetchProducts } = useGetProductsQuery({});
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ const CheckOut = () => {
   });
   const [paymentMethod] = useState<"COD">("COD"); // Fixed to 'Cash on Delivery'
   const totalAmount = products.reduce(
-    (acc, product) => acc + product.price * product.quantity,
+    (acc: number, product: any) => acc + product.price * product.quantity,
     0
   );
 

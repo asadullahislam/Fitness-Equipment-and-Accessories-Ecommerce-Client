@@ -1,19 +1,30 @@
-import React from "react";
 import { useAddProductMutation } from "../../../redux/api/api";
 
 const AddProduct = () => {
   const [addProduct, { isLoading, isError, isSuccess, error }] =
     useAddProductMutation();
 
-  const handleAddProduct = async (event) => {
+  console.log(error);
+  const handleAddProduct = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const form = event.target;
-    const name = form.name.value;
-    const price = form.price.value;
-    const category = form.category.value;
-    const description = form.description.value;
-    const quantity = Number(form.quantity.value);
-    const image = form.image.value;
+    const form = event.target as HTMLFormElement;
+    // const name = form.name.value;
+    // const price = form.price.value;
+    // const category = form.category.value;
+    // const description = form.description.value;
+    // const quantity = Number(form.quantity.value);
+    // const image = form.image.value;
+    const name = (form.elements.namedItem("name") as HTMLInputElement).value;
+    const price = (form.elements.namedItem("price") as HTMLInputElement).value;
+    const category = (form.elements.namedItem("category") as HTMLSelectElement)
+      .value;
+    const description = (
+      form.elements.namedItem("description") as HTMLInputElement
+    ).value;
+    const quantity = Number(
+      (form.elements.namedItem("quantity") as HTMLInputElement).value
+    );
+    const image = (form.elements.namedItem("image") as HTMLInputElement).value;
 
     const productData = {
       name,
@@ -31,10 +42,10 @@ const AddProduct = () => {
       console.log(result);
       form.reset();
       console.log("Product added successfully");
-    } catch (err) {
-      console.error("Failed to add product:", err);
-      if (err.data) {
-        console.error("Error data:", err.data);
+    } catch (error) {
+      console.error("Failed to add product:", error);
+      if ((error as any).data) {
+        console.error("Error data:", (error as any).data);
       }
     }
   };
@@ -113,9 +124,7 @@ const AddProduct = () => {
               Product added successfully!
             </p>
           )}
-          {isError && (
-            <p>Error: {error?.data?.message || "Failed to add product"}</p>
-          )}
+          {isError && <p>Error product not add successfull </p>}
         </div>
       </div>
     </div>

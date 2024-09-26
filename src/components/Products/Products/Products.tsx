@@ -4,12 +4,22 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import ProductCart from "../ProductCard/ProductCard";
 import { useGetProductsQuery } from "../../../redux/api/api";
 
+type Product = {
+  id: string;
+  name: string;
+  price: number;
+  category: string[];
+  quantity: number;
+  description: string;
+  image: string;
+};
+
 const Products = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOrder, setSortOrder] = useState<string>("");
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
-  const { data: product, error, isLoading } = useGetProductsQuery();
+  const { data: product, error, isLoading } = useGetProductsQuery({});
   const location = useLocation();
   const navigate = useNavigate();
   // Read the query parameter from the URL
@@ -31,7 +41,7 @@ const Products = () => {
     return <div>Error fetching products. Please try again later.</div>;
   }
 
-  const products = product?.data || [];
+  const products: Product[] = product?.data || [];
 
   const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSortOrder(e.target.value);
@@ -56,7 +66,7 @@ const Products = () => {
           product.category.includes(selectedCategory)
         )
     )
-    .sort((a, b) => {
+    .sort((a: Product, b: Product) => {
       if (sortOrder === "lowToHigh") {
         return a.price - b.price;
       }

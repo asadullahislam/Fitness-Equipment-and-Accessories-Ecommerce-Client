@@ -6,7 +6,6 @@ import image4 from "../../../assets/4.avif";
 import image5 from "../../../assets/5.avif";
 import image6 from "../../../assets/1.avif";
 import image7 from "../../../assets/4.avif";
-import image8 from "../../../assets/5.avif";
 
 const ImageGallery: React.FC = () => {
   const images = [

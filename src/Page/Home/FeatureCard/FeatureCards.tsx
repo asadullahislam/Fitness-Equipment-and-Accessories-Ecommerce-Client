@@ -3,7 +3,7 @@ import FeatureCard from "./featureCard";
 import { useGetProductsQuery } from "../../../redux/api/api";
 
 const FeatureCards = () => {
-  const { data: product, error, isLoading } = useGetProductsQuery();
+  const { data: product } = useGetProductsQuery({});
 
   const products = product?.data || [];
 
@@ -14,7 +14,7 @@ const FeatureCards = () => {
         Build Your Home Weight Room
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {products?.slice(0, 3).map((product) => (
+        {products?.slice(0, 3).map((product: any) => (
           <FeatureCard key={product._id} product={product}></FeatureCard>
         ))}
       </div>

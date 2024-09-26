@@ -6,15 +6,24 @@ import {
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 
+interface Product {
+  _id: string;
+  name: string;
+  price: number;
+  category: string[];
+  quantity: number;
+  description: string;
+  image: string;
+}
 const Admin = () => {
   // Fetch the products data
-  const { data, isLoading, error } = useGetProductsQuery();
+  const { data, isLoading } = useGetProductsQuery({});
   const [deleteProduct, { isLoading: isDeleting }] = useDeleteProductMutation();
 
   // const products = data?.data || [];
   const products = Array.isArray(data?.data) ? data.data : [];
 
-  const handleDelete = async (_id) => {
+  const handleDelete = async (_id: string) => {
     const confirmed = window.confirm(
       "Are you sure you want to delete this product?"
     );
@@ -61,7 +70,7 @@ const Admin = () => {
             </thead>
             {/* Table Body */}
             <tbody>
-              {products.map((product, index) => (
+              {products.map((product: Product, index: number) => (
                 <tr key={product._id} className="text-xs md:text-base">
                   <th className="px-2 md:px-4">{index + 1}</th>
                   <td className="px-2 md:px-4">
