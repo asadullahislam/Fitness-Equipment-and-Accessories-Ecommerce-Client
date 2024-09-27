@@ -96,24 +96,33 @@ const Products = () => {
       <div className="text-center">
         <h1 className="text-5xl font-bold">All Products</h1>
       </div>
-      <div className="flex gap-7 justify-end m-5">
-        <select
-          value={sortOrder}
-          onChange={handleSortChange}
-          className="select select-bordered w-full max-w-xs"
-        >
-          <option value="">Sort by Price</option>
-          <option value="lowToHigh">Price: Low to High</option>
-          <option value="highToLow">Price: High to Low</option>
-        </select>
-        <input
-          type="search"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Type here"
-          className="input input-bordered input-info w-full max-w-xs"
-        />
-        <button className="btn btn-primary">Search</button>
+      <div className="lg:flex md:flex gap-7 justify-end m-5">
+        <div className="sm:my-2">
+          <select
+            value={sortOrder}
+            onChange={handleSortChange}
+            className="select select-bordered w-full max-w-xs"
+          >
+            <option value="">Sort by Price</option>
+            <option value="lowToHigh">Price: Low to High</option>
+            <option value="highToLow">Price: High to Low</option>
+          </select>
+        </div>
+        <div className="grid grid-cols-1 sm:my-2">
+          <div>
+            {" "}
+            <input
+              type="search"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              placeholder="Type here"
+              className="input input-bordered input-info w-full max-w-xs"
+            />
+          </div>
+          <div>
+            <button className="btn btn-primary">Search</button>
+          </div>
+        </div>
       </div>
       <div className="flex justify-between">
         <h1 className="text-center text-4xl font-bold my-6 ">Category</h1>
@@ -138,7 +147,7 @@ const Products = () => {
           </label>
         ))}
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:mx-auto">
         {filteredProducts.length > 0 ? (
           filteredProducts.map((product) => (
             <ProductCart key={product.id} product={product} />

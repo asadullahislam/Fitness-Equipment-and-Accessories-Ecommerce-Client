@@ -4,7 +4,7 @@ import Footbar from "../components/Shared/Footbar/Footbar";
 
 const Main = () => {
   return (
-    <div className="w-3/4 mx-auto">
+    <div className="lg:w-3/4 mx-auto">
       <Navbar></Navbar>
       <Outlet></Outlet>
       <Footbar></Footbar>
